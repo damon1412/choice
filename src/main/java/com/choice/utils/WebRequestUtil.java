@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.math.BigDecimal;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.choice.model.RZRQ;
+import com.choice.model.Rzrq;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -112,8 +113,8 @@ public class WebRequestUtil {
 		return result.toString();
 	
 	}
-	public List<RZRQ> formatRZRQ(String webString){
-		List<RZRQ> rzrqList = new ArrayList<RZRQ>();
+	public List<Rzrq> formatRZRQ(String webString){
+		List<Rzrq> rzrqList = new ArrayList<Rzrq>();
 		String webStringJson = StringUtils.substring(webString, 19,webString.length()-1);
 		log.debug(webStringJson);
 		ObjectMapper mapper = new ObjectMapper();  
@@ -136,94 +137,94 @@ public class WebRequestUtil {
 				String strSecurityAbbr = element.get("securityAbbr").asText();
 				String strStockCode = element.get("stockCode").asText();
 				
-				RZRQ rzrq = new RZRQ();
-				rzrq.setOpDate(DateUtils.parseDate(strOpDate.substring(0, 4)+"/"+strOpDate.substring(4, 6)+"/"+strOpDate.substring(6, 8),new String[]{"yyyy/MM/dd"}));
+				Rzrq rzrq = new Rzrq();
+				rzrq.setOpdate(DateUtils.parseDate(strOpDate.substring(0, 4)+"/"+strOpDate.substring(4, 6)+"/"+strOpDate.substring(6, 8),new String[]{"yyyy/MM/dd"}));
 				if(null == strRqchl
 						|| strRqchl.equalsIgnoreCase("null")
 						|| strRqchl.equalsIgnoreCase("")){
-					rzrq.setRqchl(0.0);
+					rzrq.setRqchl(new BigDecimal("0.0"));
 				}else{
-					rzrq.setRqchl(Double.parseDouble(strRqchl));
+					rzrq.setRqchl(new BigDecimal(strRqchl));
 				}
 				
 				if(null == strRqmcl
 						|| strRqmcl.equalsIgnoreCase("null")
 						|| strRqmcl.equalsIgnoreCase("")){
-					rzrq.setRqmcl(0.0);
+					rzrq.setRqmcl(new BigDecimal("0.0"));
 				}else{
-					rzrq.setRqmcl(Double.parseDouble(strRqmcl));
+					rzrq.setRqmcl(new BigDecimal(strRqmcl));
 				}
 				
 				if(null == strRqyl
 						|| strRqyl.equalsIgnoreCase("null")
 						|| strRqyl.equalsIgnoreCase("")){
-					rzrq.setRqyl(0.0);
+					rzrq.setRqyl(new BigDecimal("0.0"));
 				}else{
-					rzrq.setRqyl(Double.parseDouble(strRqyl));
+					rzrq.setRqyl(new BigDecimal(strRqyl));
 				}
 				
 				if(null == strRqylje
 						|| strRqylje.equalsIgnoreCase("null")
 						|| strRqylje.equalsIgnoreCase("")){
-					rzrq.setRqylje(0.0);
+					rzrq.setRqylje(new BigDecimal("0.0"));
 				}else{
-					rzrq.setRqylje(Double.parseDouble(strRqylje));
+					rzrq.setRqylje(new BigDecimal(strRqylje));
 				}
 				
 				if(null == strRw
 						|| strRw.equalsIgnoreCase("null")
 						|| strRw.equalsIgnoreCase("")){
-					rzrq.setRw(0.0);
+					rzrq.setRw(new BigDecimal("0.0"));
 				}else{
-					rzrq.setRw(Double.parseDouble(strRw));
+					rzrq.setRw(new BigDecimal(strRw));
 				}
 				
 				if(null == strRzche
 						|| strRzche.equalsIgnoreCase("null")
 						|| strRzche.equalsIgnoreCase("")){
-					rzrq.setRzche(0.0);
+					rzrq.setRzche(new BigDecimal("0.0"));
 				}else{
-					rzrq.setRzche(Double.parseDouble(strRzche));
+					rzrq.setRzche(new BigDecimal(strRzche));
 				}
 				
 				if(null == strRzmre
 						|| strRzmre.equalsIgnoreCase("null")
 						|| strRzmre.equalsIgnoreCase("")){
-					rzrq.setRzmre(0.0);
+					rzrq.setRzmre(new BigDecimal("0.0"));
 				}else{
-					rzrq.setRzmre(Double.parseDouble(strRzmre));
+					rzrq.setRzmre(new BigDecimal(strRzmre));
 				}
 				
 				if(null == strRzrqjyzl
 						|| strRzrqjyzl.equalsIgnoreCase("null")
 						|| strRzrqjyzl.equalsIgnoreCase("")){
-					rzrq.setRzrqjyzl(0.0);
+					rzrq.setRzrqjyzl(new BigDecimal("0.0"));
 				}else{
-					rzrq.setRzrqjyzl(Double.parseDouble(strRzrqjyzl));
+					rzrq.setRzrqjyzl(new BigDecimal(strRzrqjyzl));
 				}
 				
 				if(null == strRzye
 						|| strRzye.equalsIgnoreCase("null")
 						|| strRzye.equalsIgnoreCase("")){
-					rzrq.setRzye(0.0);
+					rzrq.setRzye(new BigDecimal("0.0"));
 				}else{
-					rzrq.setRzye(Double.parseDouble(strRzye));
+					rzrq.setRzye(new BigDecimal(strRzye));
 				}
 				
 				if(null == strSecurityAbbr
 						|| strSecurityAbbr.equalsIgnoreCase("null")
 						|| strSecurityAbbr.equalsIgnoreCase("")){
-					rzrq.setSecurityAbbr("");
+					rzrq.setSecurityabbr("-1");
 				}else{
-					rzrq.setSecurityAbbr(strSecurityAbbr);
+					rzrq.setSecurityabbr(strSecurityAbbr);
 				}
 				
 				if(null == strStockCode
 						|| strStockCode.equalsIgnoreCase("null")
 						|| strStockCode.equalsIgnoreCase("")){
-					rzrq.setStockCode("");
+					rzrq.setStockcode("1");
 				}else{
-					rzrq.setStockCode(strStockCode);
+					rzrq.setStockcode(strStockCode);
 				}
 				
 				rzrqList.add(rzrq);

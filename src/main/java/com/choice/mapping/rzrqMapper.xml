@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.choice.idao.rzrqMapper" >
+  <resultMap id="BaseResultMap" type="com.choice.model.Rzrq" >
+    <id column="stockCode" property="stockcode" jdbcType="VARCHAR" />
+    <id column="opDate" property="opdate" jdbcType="DATE" />
+    <result column="rqchl" property="rqchl" jdbcType="DECIMAL" />
+    <result column="rqmcl" property="rqmcl" jdbcType="DECIMAL" />
+    <result column="rqyl" property="rqyl" jdbcType="DECIMAL" />
+    <result column="rqylje" property="rqylje" jdbcType="DECIMAL" />
+    <result column="rw" property="rw" jdbcType="DECIMAL" />
+    <result column="rzche" property="rzche" jdbcType="DECIMAL" />
+    <result column="rzmre" property="rzmre" jdbcType="DECIMAL" />
+    <result column="rzrqjyzl" property="rzrqjyzl" jdbcType="DECIMAL" />
+    <result column="rzye" property="rzye" jdbcType="DECIMAL" />
+    <result column="securityAbbr" property="securityabbr" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    stockCode, opDate, rqchl, rqmcl, rqyl, rqylje, rw, rzche, rzmre, rzrqjyzl, rzye, 
+    securityAbbr
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.choice.model.RzrqKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from rzrq_total
+    where stockCode = #{stockcode,jdbcType=VARCHAR}
+      and opDate = #{opdate,jdbcType=DATE}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.choice.model.RzrqKey" >
+    delete from rzrq_total
+    where stockCode = #{stockcode,jdbcType=VARCHAR}
+      and opDate = #{opdate,jdbcType=DATE}
+  </delete>
+  <insert id="insert" parameterType="com.choice.model.Rzrq" >
+    insert into rzrq_total (stockCode, opDate, rqchl, 
+      rqmcl, rqyl, rqylje, 
+      rw, rzche, rzmre, rzrqjyzl, 
+      rzye, securityAbbr)
+    values (#{stockcode,jdbcType=VARCHAR}, #{opdate,jdbcType=DATE}, #{rqchl,jdbcType=DECIMAL}, 
+      #{rqmcl,jdbcType=DECIMAL}, #{rqyl,jdbcType=DECIMAL}, #{rqylje,jdbcType=DECIMAL}, 
+      #{rw,jdbcType=DECIMAL}, #{rzche,jdbcType=DECIMAL}, #{rzmre,jdbcType=DECIMAL}, #{rzrqjyzl,jdbcType=DECIMAL}, 
+      #{rzye,jdbcType=DECIMAL}, #{securityabbr,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.choice.model.Rzrq" >
+    insert into rzrq_total
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="stockcode != null" >
+        stockCode,
+      </if>
+      <if test="opdate != null" >
+        opDate,
+      </if>
+      <if test="rqchl != null" >
+        rqchl,
+      </if>
+      <if test="rqmcl != null" >
+        rqmcl,
+      </if>
+      <if test="rqyl != null" >
+        rqyl,
+      </if>
+      <if test="rqylje != null" >
+        rqylje,
+      </if>
+      <if test="rw != null" >
+        rw,
+      </if>
+      <if test="rzche != null" >
+        rzche,
+      </if>
+      <if test="rzmre != null" >
+        rzmre,
+      </if>
+      <if test="rzrqjyzl != null" >
+        rzrqjyzl,
+      </if>
+      <if test="rzye != null" >
+        rzye,
+      </if>
+      <if test="securityabbr != null" >
+        securityAbbr,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="stockcode != null" >
+        #{stockcode,jdbcType=VARCHAR},
+      </if>
+      <if test="opdate != null" >
+        #{opdate,jdbcType=DATE},
+      </if>
+      <if test="rqchl != null" >
+        #{rqchl,jdbcType=DECIMAL},
+      </if>
+      <if test="rqmcl != null" >
+        #{rqmcl,jdbcType=DECIMAL},
+      </if>
+      <if test="rqyl != null" >
+        #{rqyl,jdbcType=DECIMAL},
+      </if>
+      <if test="rqylje != null" >
+        #{rqylje,jdbcType=DECIMAL},
+      </if>
+      <if test="rw != null" >
+        #{rw,jdbcType=DECIMAL},
+      </if>
+      <if test="rzche != null" >
+        #{rzche,jdbcType=DECIMAL},
+      </if>
+      <if test="rzmre != null" >
+        #{rzmre,jdbcType=DECIMAL},
+      </if>
+      <if test="rzrqjyzl != null" >
+        #{rzrqjyzl,jdbcType=DECIMAL},
+      </if>
+      <if test="rzye != null" >
+        #{rzye,jdbcType=DECIMAL},
+      </if>
+      <if test="securityabbr != null" >
+        #{securityabbr,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.choice.model.Rzrq" >
+    update rzrq_total
+    <set >
+      <if test="rqchl != null" >
+        rqchl = #{rqchl,jdbcType=DECIMAL},
+      </if>
+      <if test="rqmcl != null" >
+        rqmcl = #{rqmcl,jdbcType=DECIMAL},
+      </if>
+      <if test="rqyl != null" >
+        rqyl = #{rqyl,jdbcType=DECIMAL},
+      </if>
+      <if test="rqylje != null" >
+        rqylje = #{rqylje,jdbcType=DECIMAL},
+      </if>
+      <if test="rw != null" >
+        rw = #{rw,jdbcType=DECIMAL},
+      </if>
+      <if test="rzche != null" >
+        rzche = #{rzche,jdbcType=DECIMAL},
+      </if>
+      <if test="rzmre != null" >
+        rzmre = #{rzmre,jdbcType=DECIMAL},
+      </if>
+      <if test="rzrqjyzl != null" >
+        rzrqjyzl = #{rzrqjyzl,jdbcType=DECIMAL},
+      </if>
+      <if test="rzye != null" >
+        rzye = #{rzye,jdbcType=DECIMAL},
+      </if>
+      <if test="securityabbr != null" >
+        securityAbbr = #{securityabbr,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where stockCode = #{stockcode,jdbcType=VARCHAR}
+      and opDate = #{opdate,jdbcType=DATE}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.choice.model.Rzrq" >
+    update rzrq_total
+    set rqchl = #{rqchl,jdbcType=DECIMAL},
+      rqmcl = #{rqmcl,jdbcType=DECIMAL},
+      rqyl = #{rqyl,jdbcType=DECIMAL},
+      rqylje = #{rqylje,jdbcType=DECIMAL},
+      rw = #{rw,jdbcType=DECIMAL},
+      rzche = #{rzche,jdbcType=DECIMAL},
+      rzmre = #{rzmre,jdbcType=DECIMAL},
+      rzrqjyzl = #{rzrqjyzl,jdbcType=DECIMAL},
+      rzye = #{rzye,jdbcType=DECIMAL},
+      securityAbbr = #{securityabbr,jdbcType=VARCHAR}
+    where stockCode = #{stockcode,jdbcType=VARCHAR}
+      and opDate = #{opdate,jdbcType=DATE}
+  </update>
+</mapper>

@@ -10,7 +10,8 @@
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-	<bean id="RZRQserviceImpl" class="com.choice.service.impl.RZRQserviceImpl" lazy-init="true"></bean>
-
-
+	<bean id="RZRQserviceImpl" class="com.choice.service.impl.RZRQserviceImpl"
+		lazy-init="true"></bean>
+	<bean id="Rzrq" class="com.choice.model.Rzrq"></bean>
+	<bean id="RzrqKey" class="com.choice.model.RzrqKey"></bean>
 </beans>        

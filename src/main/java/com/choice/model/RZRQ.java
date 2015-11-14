@@ -1,90 +1,105 @@
 package com.choice.model;
 
-import java.util.Date;
+import java.math.BigDecimal;
 
-public class RZRQ {
-	private Date opDate;
-	private Double rqchl;
-	private Double rqmcl;
-	private Double rqyl;
-	private Double rqylje;
-	private Double rw;
-	private Double rzche;
-	private Double rzmre;
-	private Double rzrqjyzl;
-	private Double rzye;
-	private String securityAbbr;
-	private String stockCode;
-	public Date getOpDate() {
-		return opDate;
-	}
-	public void setOpDate(Date opDate) {
-		this.opDate = opDate;
-	}
-	public Double getRqchl() {
-		return rqchl;
-	}
-	public void setRqchl(Double rqchl) {
-		this.rqchl = rqchl;
-	}
-	public Double getRqmcl() {
-		return rqmcl;
-	}
-	public void setRqmcl(Double rqmcl) {
-		this.rqmcl = rqmcl;
-	}
-	public Double getRqyl() {
-		return rqyl;
-	}
-	public void setRqyl(Double rqyl) {
-		this.rqyl = rqyl;
-	}
-	public Double getRqylje() {
-		return rqylje;
-	}
-	public void setRqylje(Double rqylje) {
-		this.rqylje = rqylje;
-	}
-	public Double getRw() {
-		return rw;
-	}
-	public void setRw(Double rw) {
-		this.rw = rw;
-	}
-	public Double getRzche() {
-		return rzche;
-	}
-	public void setRzche(Double rzche) {
-		this.rzche = rzche;
-	}
-	public Double getRzmre() {
-		return rzmre;
-	}
-	public void setRzmre(Double rzmre) {
-		this.rzmre = rzmre;
-	}
-	public Double getRzrqjyzl() {
-		return rzrqjyzl;
-	}
-	public void setRzrqjyzl(Double rzrqjyzl) {
-		this.rzrqjyzl = rzrqjyzl;
-	}
-	public Double getRzye() {
-		return rzye;
-	}
-	public void setRzye(Double rzye) {
-		this.rzye = rzye;
-	}
-	public String getSecurityAbbr() {
-		return securityAbbr;
-	}
-	public void setSecurityAbbr(String securityAbbr) {
-		this.securityAbbr = securityAbbr;
-	}
-	public String getStockCode() {
-		return stockCode;
-	}
-	public void setStockCode(String stockCode) {
-		this.stockCode = stockCode;
-	}
+public class Rzrq extends RzrqKey {
+    private BigDecimal rqchl;
+
+    private BigDecimal rqmcl;
+
+    private BigDecimal rqyl;
+
+    private BigDecimal rqylje;
+
+    private BigDecimal rw;
+
+    private BigDecimal rzche;
+
+    private BigDecimal rzmre;
+
+    private BigDecimal rzrqjyzl;
+
+    private BigDecimal rzye;
+
+    private String securityabbr;
+
+    public BigDecimal getRqchl() {
+        return rqchl;
+    }
+
+    public void setRqchl(BigDecimal rqchl) {
+        this.rqchl = rqchl;
+    }
+
+    public BigDecimal getRqmcl() {
+        return rqmcl;
+    }
+
+    public void setRqmcl(BigDecimal rqmcl) {
+        this.rqmcl = rqmcl;
+    }
+
+    public BigDecimal getRqyl() {
+        return rqyl;
+    }
+
+    public void setRqyl(BigDecimal rqyl) {
+        this.rqyl = rqyl;
+    }
+
+    public BigDecimal getRqylje() {
+        return rqylje;
+    }
+
+    public void setRqylje(BigDecimal rqylje) {
+        this.rqylje = rqylje;
+    }
+
+    public BigDecimal getRw() {
+        return rw;
+    }
+
+    public void setRw(BigDecimal rw) {
+        this.rw = rw;
+    }
+
+    public BigDecimal getRzche() {
+        return rzche;
+    }
+
+    public void setRzche(BigDecimal rzche) {
+        this.rzche = rzche;
+    }
+
+    public BigDecimal getRzmre() {
+        return rzmre;
+    }
+
+    public void setRzmre(BigDecimal rzmre) {
+        this.rzmre = rzmre;
+    }
+
+    public BigDecimal getRzrqjyzl() {
+        return rzrqjyzl;
+    }
+
+    public void setRzrqjyzl(BigDecimal rzrqjyzl) {
+        this.rzrqjyzl = rzrqjyzl;
+    }
+
+    public BigDecimal getRzye() {
+        return rzye;
+    }
+
+    public void setRzye(BigDecimal rzye) {
+        this.rzye = rzye;
+    }
+
+    public String getSecurityabbr() {
+        return securityabbr;
+    }
+
+    public void setSecurityabbr(String securityabbr) {
+        this.securityabbr = securityabbr == null ? null : securityabbr.trim();
+    }
 }
