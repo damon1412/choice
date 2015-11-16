@@ -6,7 +6,7 @@ import com.choice.model.Rzrq;
 import com.choice.model.RzrqKey;
 
 public interface IRZRQservice {
-	
+
 	List<Rzrq> getRZRQfromWeb();
 
 	int deleteByPrimaryKey(RzrqKey key);
@@ -20,4 +20,6 @@ public interface IRZRQservice {
 	int updateByPrimaryKeySelective(Rzrq record);
 
 	int updateByPrimaryKey(Rzrq record);
+
+	List<Rzrq> selectRecent(RzrqKey key);
 }

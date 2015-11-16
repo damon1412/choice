@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.choice.idao.RzrqRequestHandMapper" >
+  <resultMap id="BaseResultMap" type="com.choice.model.RzrqRequestHand" >
+    <id column="request_id" property="requestId" jdbcType="INTEGER" />
+    <result column="scheme" property="scheme" jdbcType="VARCHAR" />
+    <result column="host" property="host" jdbcType="VARCHAR" />
+    <result column="path" property="path" jdbcType="VARCHAR" />
+    <result column="Referer" property="referer" jdbcType="VARCHAR" />
+    <result column="Accept" property="accept" jdbcType="VARCHAR" />
+    <result column="Content_Type" property="contentType" jdbcType="VARCHAR" />
+    <result column="Connection" property="connection" jdbcType="VARCHAR" />
+    <result column="User_Agent" property="userAgent" jdbcType="VARCHAR" />
+    <result column="Accept_Encoding" property="acceptEncoding" jdbcType="VARCHAR" />
+    <result column="jsonCallBack" property="jsoncallback" jdbcType="VARCHAR" />
+    <result column="isPagination" property="ispagination" jdbcType="VARCHAR" />
+    <result column="tabType" property="tabtype" jdbcType="VARCHAR" />
+    <result column="pageSize" property="pagesize" jdbcType="INTEGER" />
+    <result column="beginDate" property="begindate" jdbcType="DATE" />
+    <result column="endDate" property="enddate" jdbcType="DATE" />
+    <result column="under_line_value" property="underLineValue" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    request_id, scheme, host, path, Referer, Accept, Content_Type, Connection, User_Agent, 
+    Accept_Encoding, jsonCallBack, isPagination, tabType, pageSize, beginDate, endDate, 
+    under_line_value
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from rzrq_request
+    where request_id = #{requestId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from rzrq_request
+    where request_id = #{requestId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.choice.model.RzrqRequestHand" >
+    insert into rzrq_request (request_id, scheme, host, 
+      path, Referer, Accept, 
+      Content_Type, Connection, User_Agent, 
+      Accept_Encoding, jsonCallBack, isPagination, 
+      tabType, pageSize, beginDate, 
+      endDate, under_line_value)
+    values (#{requestId,jdbcType=INTEGER}, #{scheme,jdbcType=VARCHAR}, #{host,jdbcType=VARCHAR}, 
+      #{path,jdbcType=VARCHAR}, #{referer,jdbcType=VARCHAR}, #{accept,jdbcType=VARCHAR}, 
+      #{contentType,jdbcType=VARCHAR}, #{connection,jdbcType=VARCHAR}, #{userAgent,jdbcType=VARCHAR}, 
+      #{acceptEncoding,jdbcType=VARCHAR}, #{jsoncallback,jdbcType=VARCHAR}, #{ispagination,jdbcType=VARCHAR}, 
+      #{tabtype,jdbcType=VARCHAR}, #{pagesize,jdbcType=INTEGER}, #{begindate,jdbcType=DATE}, 
+      #{enddate,jdbcType=DATE}, #{underLineValue,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.choice.model.RzrqRequestHand" >
+    insert into rzrq_request
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="requestId != null" >
+        request_id,
+      </if>
+      <if test="scheme != null" >
+        scheme,
+      </if>
+      <if test="host != null" >
+        host,
+      </if>
+      <if test="path != null" >
+        path,
+      </if>
+      <if test="referer != null" >
+        Referer,
+      </if>
+      <if test="accept != null" >
+        Accept,
+      </if>
+      <if test="contentType != null" >
+        Content_Type,
+      </if>
+      <if test="connection != null" >
+        Connection,
+      </if>
+      <if test="userAgent != null" >
+        User_Agent,
+      </if>
+      <if test="acceptEncoding != null" >
+        Accept_Encoding,
+      </if>
+      <if test="jsoncallback != null" >
+        jsonCallBack,
+      </if>
+      <if test="ispagination != null" >
+        isPagination,
+      </if>
+      <if test="tabtype != null" >
+        tabType,
+      </if>
+      <if test="pagesize != null" >
+        pageSize,
+      </if>
+      <if test="begindate != null" >
+        beginDate,
+      </if>
+      <if test="enddate != null" >
+        endDate,
+      </if>
+      <if test="underLineValue != null" >
+        under_line_value,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="requestId != null" >
+        #{requestId,jdbcType=INTEGER},
+      </if>
+      <if test="scheme != null" >
+        #{scheme,jdbcType=VARCHAR},
+      </if>
+      <if test="host != null" >
+        #{host,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null" >
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="referer != null" >
+        #{referer,jdbcType=VARCHAR},
+      </if>
+      <if test="accept != null" >
+        #{accept,jdbcType=VARCHAR},
+      </if>
+      <if test="contentType != null" >
+        #{contentType,jdbcType=VARCHAR},
+      </if>
+      <if test="connection != null" >
+        #{connection,jdbcType=VARCHAR},
+      </if>
+      <if test="userAgent != null" >
+        #{userAgent,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptEncoding != null" >
+        #{acceptEncoding,jdbcType=VARCHAR},
+      </if>
+      <if test="jsoncallback != null" >
+        #{jsoncallback,jdbcType=VARCHAR},
+      </if>
+      <if test="ispagination != null" >
+        #{ispagination,jdbcType=VARCHAR},
+      </if>
+      <if test="tabtype != null" >
+        #{tabtype,jdbcType=VARCHAR},
+      </if>
+      <if test="pagesize != null" >
+        #{pagesize,jdbcType=INTEGER},
+      </if>
+      <if test="begindate != null" >
+        #{begindate,jdbcType=DATE},
+      </if>
+      <if test="enddate != null" >
+        #{enddate,jdbcType=DATE},
+      </if>
+      <if test="underLineValue != null" >
+        #{underLineValue,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.choice.model.RzrqRequestHand" >
+    update rzrq_request
+    <set >
+      <if test="scheme != null" >
+        scheme = #{scheme,jdbcType=VARCHAR},
+      </if>
+      <if test="host != null" >
+        host = #{host,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null" >
+        path = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="referer != null" >
+        Referer = #{referer,jdbcType=VARCHAR},
+      </if>
+      <if test="accept != null" >
+        Accept = #{accept,jdbcType=VARCHAR},
+      </if>
+      <if test="contentType != null" >
+        Content_Type = #{contentType,jdbcType=VARCHAR},
+      </if>
+      <if test="connection != null" >
+        Connection = #{connection,jdbcType=VARCHAR},
+      </if>
+      <if test="userAgent != null" >
+        User_Agent = #{userAgent,jdbcType=VARCHAR},
+      </if>
+      <if test="acceptEncoding != null" >
+        Accept_Encoding = #{acceptEncoding,jdbcType=VARCHAR},
+      </if>
+      <if test="jsoncallback != null" >
+        jsonCallBack = #{jsoncallback,jdbcType=VARCHAR},
+      </if>
+      <if test="ispagination != null" >
+        isPagination = #{ispagination,jdbcType=VARCHAR},
+      </if>
+      <if test="tabtype != null" >
+        tabType = #{tabtype,jdbcType=VARCHAR},
+      </if>
+      <if test="pagesize != null" >
+        pageSize = #{pagesize,jdbcType=INTEGER},
+      </if>
+      <if test="begindate != null" >
+        beginDate = #{begindate,jdbcType=DATE},
+      </if>
+      <if test="enddate != null" >
+        endDate = #{enddate,jdbcType=DATE},
+      </if>
+      <if test="underLineValue != null" >
+        under_line_value = #{underLineValue,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where request_id = #{requestId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.choice.model.RzrqRequestHand" >
+    update rzrq_request
+    set scheme = #{scheme,jdbcType=VARCHAR},
+      host = #{host,jdbcType=VARCHAR},
+      path = #{path,jdbcType=VARCHAR},
+      Referer = #{referer,jdbcType=VARCHAR},
+      Accept = #{accept,jdbcType=VARCHAR},
+      Content_Type = #{contentType,jdbcType=VARCHAR},
+      Connection = #{connection,jdbcType=VARCHAR},
+      User_Agent = #{userAgent,jdbcType=VARCHAR},
+      Accept_Encoding = #{acceptEncoding,jdbcType=VARCHAR},
+      jsonCallBack = #{jsoncallback,jdbcType=VARCHAR},
+      isPagination = #{ispagination,jdbcType=VARCHAR},
+      tabType = #{tabtype,jdbcType=VARCHAR},
+      pageSize = #{pagesize,jdbcType=INTEGER},
+      beginDate = #{begindate,jdbcType=DATE},
+      endDate = #{enddate,jdbcType=DATE},
+      under_line_value = #{underLineValue,jdbcType=VARCHAR}
+    where request_id = #{requestId,jdbcType=INTEGER}
+  </update>
+</mapper>

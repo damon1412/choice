@@ -1,5 +1,7 @@
 package com.choice.idao;
 
+import java.util.List;
+
 import com.choice.model.Rzrq;
 import com.choice.model.RzrqKey;
 
@@ -16,5 +18,7 @@ public interface rzrqMapper {
 	int updateByPrimaryKeySelective(Rzrq record);
 
 	int updateByPrimaryKey(Rzrq record);
+	
+	List<Rzrq> selectRecent(RzrqKey key);
 	
 }

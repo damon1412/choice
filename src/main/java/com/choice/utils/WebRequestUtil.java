@@ -8,11 +8,15 @@ import java.math.BigDecimal;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 
+import javax.annotation.Resource;
+
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
@@ -26,14 +30,100 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Service;
 
 import com.choice.model.Rzrq;
+import com.choice.model.RzrqRequestHand;
+import com.choice.service.IRzrqRequestHandService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+@Scope("prototype")
+@Service
 public class WebRequestUtil {
 	private static Logger log = LoggerFactory.getLogger(WebRequestUtil.class);
+	@Resource(name="RzrqRequestHandServiceImpl")
+	private IRzrqRequestHandService rzrqRequestHandService;
+	/**
+	 * get request body not formated
+	 * use method formatRZRQ(String webString) to format
+	 * @param startDay 
+	 * @param endDay 
+	 */
+	public String getRequest(Date startDay,Date endDay){
+		log.debug("get web data between date: "+DateUtils.formatDate(startDay, "yyyy-MM-dd")+" to "+DateUtils.formatDate(endDay, "yyyy-MM-dd"));
+		StringBuffer result = new StringBuffer();
+		String strStartDay = FormatUtil.formatDateToString(startDay);
+		String strEndDay = FormatUtil.formatDateToString(endDay);
+		RzrqRequestHand rzrqRequestHand = rzrqRequestHandService.selectByPrimaryKey(1);
+		String scheme = rzrqRequestHand.getScheme();
+		String host = rzrqRequestHand.getHost();
+		String path = rzrqRequestHand.getPath();
+		String Referer = rzrqRequestHand.getReferer();
+		String Accept = rzrqRequestHand.getAccept();
+		String Content_Type = rzrqRequestHand.getContentType();
+		String Connection = rzrqRequestHand.getConnection();
+		String User_Agent = rzrqRequestHand.getUserAgent();
+		String Accept_Encoding = rzrqRequestHand.getAcceptEncoding();
+		URI uri = null;
+		try {
+			uri = new URIBuilder().setScheme(scheme)
+					.setHost(host)
+					.setPath(path)
+					.setParameter("pageHelp.pageSize", rzrqRequestHand.getPagesize().toString())
+					.setParameter("tabType", rzrqRequestHand.getTabtype())
+					.setParameter("isPagination", rzrqRequestHand.getIspagination())
+					.setParameter("jsonCallBack", rzrqRequestHand.getJsoncallback())
+					.setParameter("_", rzrqRequestHand.getUnderLineValue())
+					.setParameter("beginDate", strStartDay)
+					.setParameter("endDate", strEndDay)
+					.build();
+		} catch (URISyntaxException e) {
+			log.error(e.getMessage());
+		}
+		CloseableHttpResponse response1 = null;
+		CloseableHttpClient httpclient = HttpClients.createDefault();
+		HttpGet httpGet = new HttpGet(uri);
+		System.out.println(httpGet.getURI());
+		httpGet.setHeader("Host", host);
+		httpGet.setHeader("Referer", Referer);
+		httpGet.addHeader("Accept", Accept);
+		httpGet.setHeader("Content-Type", Content_Type);
+		httpGet.setHeader("Connection", Connection);
+		httpGet.setHeader("User-Agent", User_Agent);
+		httpGet.setHeader("Accept-Encoding", Accept_Encoding);
+		BufferedReader br = null;
+		try {
+			response1 = httpclient.execute(httpGet);
+			log.info(response1.getStatusLine().toString());
+			HttpEntity entity1 = response1.getEntity();
+			br = new BufferedReader(new InputStreamReader(entity1.getContent()));
+			String line = null;
+			while ((line = br.readLine()) != null) {
+				result.append(line);
+			}
+			EntityUtils.consume(entity1);
+		} catch (ClientProtocolException e) {
+			log.error(e.getMessage());
+		} catch (IOException e) {
+			log.error(e.getMessage());
+		} finally {
+			try {
+				br.close();
+			} catch (IOException e) {
+				log.error(e.getMessage());
+			}
+			try {
+				response1.close();
+			} catch (IOException e) {
+				log.error(e.getMessage());
+			}
+		}
+		return result.toString();
+	}
+	
 	public String getRequest(){
 		StringBuffer result = new StringBuffer();
 		Properties pps = new Properties();
@@ -226,10 +316,10 @@ public class WebRequestUtil {
 				}else{
 					rzrq.setStockcode(strStockCode);
 				}
-				
+				log.debug("get rzrq data: "+ToStringBuilder.reflectionToString(rzrq));
 				rzrqList.add(rzrq);
 			}
-			
+			log.debug("get rzrq data size: "+rzrqList.size());
 		} catch (JsonProcessingException e) {
 			log.error(e.getMessage());
 		} catch (IOException e) {

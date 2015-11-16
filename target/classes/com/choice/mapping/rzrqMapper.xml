@@ -26,6 +26,15 @@
     where stockCode = #{stockcode,jdbcType=VARCHAR}
       and opDate = #{opdate,jdbcType=DATE}
   </select>
+  
+    <select id="selectRecent" resultMap="BaseResultMap" parameterType="com.choice.model.RzrqKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from rzrq_total
+    where stockCode = #{stockcode,jdbcType=VARCHAR}
+      order by opdate desc limit 20 
+  </select>
+  
   <delete id="deleteByPrimaryKey" parameterType="com.choice.model.RzrqKey" >
     delete from rzrq_total
     where stockCode = #{stockcode,jdbcType=VARCHAR}
